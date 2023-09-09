@@ -7,6 +7,8 @@
             let htmlframe = document.getElementById("container");
             if (x == "") x = 0
             if (y == "") y = 0
+            if (typeof(x) == "number") x += "px"
+            if (typeof(y) == "number") y += "px"
             if (typeof(x) == "string"){
                 if(!cssCheck(x)) x += "px"
             }
