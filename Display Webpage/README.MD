@@ -2,6 +2,16 @@
 By Alexankitty  
 Gives a simple MixItUp style option to display a webpage in the overlay.  
 
+## Options
+URL: Specifies the URL of a webpage to load  
+URLParams: Specifies the URL parameters (everything after the ?)  
+Width: Width of the frame  
+Height: Height of the frame  
+Anchor: Side of the overlay to anchor the html page to  
+X: X Position  
+Y: Y position  
+Duration: How long in seconds it will display for.  
+
 ## For anchors use the following:
 Top Bottom Middle for vertical (Y axis) position  
 Left Right Center for Horizontal (X axis) position  
