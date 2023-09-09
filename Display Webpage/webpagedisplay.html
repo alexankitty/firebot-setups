@@ -3,8 +3,11 @@
     <script type="text/javascript">
         const removeEmptyLines = str => str.split(/\r?\n/).filter(line => line.trim() !== '').join('\n');
         const cssCheck = str => ["cm", "mm", "in", "px", "pt", "pc", "em", "ex", "ch", "rem", "vw", "vh", "vmin", "vmax", "%"].reduce((a,c) => a + str.includes(c), 0) == 1;
-        function setFrameStyles(x, y, anchor) {
+        function setFrameStyles(x, y, anchor, width, height) {
             let htmlframe = document.getElementById("container");
+            let frame = document.getElementById("htmlframe$customVariable[webId]")
+            let centerAdj = (width / 2) - (x / 2)
+            let middleAdj = (height / 2) - (y / 2)
             if (x == "") x = 0
             if (y == "") y = 0
             if (typeof(x) == "number") x += "px"
@@ -22,16 +25,16 @@
                 #htmlframe$customVariable[webId]{
                     ${anchor.includes("top") ? `top: ${y};` : ""}
                     ${anchor.includes("bottom") ? `bottom: ${y};` : ""}
-                    ${anchor.includes("middle") ? `top: calc(50% - calc(${y} / 2));` : ""}
+                    ${anchor.includes("middle") ? `top: calc(50% - calc(calc(${height} / 2) - calc(${y} / 2)));` : ""}
                     ${anchor.includes("left") ? `left: ${x};` : ""}
                     ${anchor.includes("right") ? `right: ${x};` : ""}
-                    ${anchor.includes("center") ? `left: calc(50% - calc(${x} / 2));` : ""}
+                    ${anchor.includes("center") ? `left: calc(50% - calc(calc(${width} / 2) - calc(${x} / 2)));` : ""}
                 }
             `
             styleOverride.innerHTML = removeEmptyLines(styleOverride.innerHTML)
             htmlframe.appendChild(styleOverride);
         }
-        setFrameStyles("$encodeForHtml[$presetListArg[X]]", "$encodeForHtml[$presetListArg[Y]]" , "$encodeForHtml[$presetListArg[Anchor]]")
+        setFrameStyles("$encodeForHtml[$presetListArg[X]]", "$encodeForHtml[$presetListArg[Y]]" , "$encodeForHtml[$presetListArg[Anchor]]", "$encodeForHtml[$presetListArg[Width]]", "$encodeForHtml[$presetListArg[Height]]")
     </script>
 </div>
 
